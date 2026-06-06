@@ -5,7 +5,7 @@
 #include <vector>
 
 class PMTree {
-public:
+ public:
   struct Node {
     char sym;
     std::vector<Node*> links;
@@ -18,7 +18,7 @@ public:
   explicit PMTree(const std::vector<char>& src);
   ~PMTree();
 
-private:
+ private:
   Node* generate(const std::vector<char>& available);
   void destroy(Node* nodePtr);
 };
@@ -29,5 +29,4 @@ std::vector<char> getPerm2(PMTree& treeObj, int num);
 
 size_t fact(int n);
 
-#endif
-
+#endif  // INCLUDE_TREE_H_

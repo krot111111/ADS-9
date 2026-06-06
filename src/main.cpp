@@ -34,11 +34,14 @@ int main() {
 
   for (int currentN = 3; currentN <= 8; ++currentN) {
     std::vector<char> nodeElements;
-    for (int counter = 0; counter < currentN; ++counter) nodeElements.push_back('a' + counter);
+    for (int counter = 0; counter < currentN; ++counter) {
+      nodeElements.push_back('a' + counter);
+    }
     PMTree benchTree(nodeElements);
 
     std::mt19937 generatorEngine(42);
-    std::uniform_int_distribution<> distributionRange(1, static_cast<int>(fact(currentN)));
+    std::uniform_int_distribution<> distributionRange(
+        1, static_cast<int>(fact(currentN)));
     int randomTarget = distributionRange(generatorEngine);
 
     auto timestamp0 = std::chrono::high_resolution_clock::now();
@@ -49,9 +52,12 @@ int main() {
     getPerm2(benchTree, randomTarget);
     auto timestamp3 = std::chrono::high_resolution_clock::now();
 
-    double runTimeAll = std::chrono::duration<double>(timestamp1 - timestamp0).count();
-    double runTimeP1  = std::chrono::duration<double>(timestamp2 - timestamp1).count();
-    double runTimeP2  = std::chrono::duration<double>(timestamp3 - timestamp2).count();
+    double runTimeAll = std::chrono::duration<double>(
+        timestamp1 - timestamp0).count();
+    double runTimeP1  = std::chrono::duration<double>(
+        timestamp2 - timestamp1).count();
+    double runTimeP2  = std::chrono::duration<double>(
+        timestamp3 - timestamp2).count();
 
     std::cout << currentN << ";"
         << std::fixed << std::setprecision(6) << runTimeAll << ";"
